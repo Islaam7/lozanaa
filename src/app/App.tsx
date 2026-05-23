@@ -218,7 +218,7 @@ export default function App() {
                 <div className="flex items-start gap-4 p-4 bg-secondary/20 rounded-lg border border-primary/20 hover:border-primary/50 transition-colors">
                   <Award className="text-primary shrink-0 mt-1" size={24} />
                   <div className="text-right">
-                    <h3 className="font-bold mb-1">ضمان طويل الأجل</h3>
+                    <h3 className="font-bold mb-1">ضمان يصل إلى 10 سنوات</h3>
                     <p className="text-sm text-muted-foreground">ضمان 10 سنوات على جودة الطبقة الحماية</p>
                   </div>
                 </div>
