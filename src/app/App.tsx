@@ -17,7 +17,7 @@ export default function App() {
             {/* Logo */}
             <div className="flex items-center gap-2">
               <div className="text-2xl font-bold">
-                Lo<span className="text-primary">zan</span>
+                <img src="https://i.ibb.co/KxchXXLs/Group-1.png" alt="لوزان" className="h-10 w-auto" />
               </div>
             </div>
 
@@ -121,7 +121,7 @@ export default function App() {
                 <Shield className="text-primary shrink-0" size={28} />
                 <div className="text-right">
                   <div className="text-xs text-white/50">ضمان</div>
-                  <div className="text-sm font-semibold">ضمان طويل الأجل</div>
+                  <div className="text-sm font-semibold">راحة وثقة بضمان يمتد لـ 10 سنوات</div>
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3">
@@ -325,7 +325,7 @@ export default function App() {
                 </p>
                 <div className="flex gap-6 justify-end">
                   <div className="text-center">
-                    <div className="text-xl font-bold text-primary">+2000</div>
+                    <div className="text-xl font-bold text-primary">+5000</div>
                     <div className="text-xs text-white/50">سيارة محمية</div>
                   </div>
                   <div className="text-center">
@@ -334,7 +334,7 @@ export default function App() {
                   </div>
                   <div className="text-center">
                     <div className="text-xl font-bold text-primary">24/7</div>
-                    <div className="text-xs text-white/50">دعم فوري</div>
+                    <div className="text-xs text-white/50">خدمة عملاء 24 ساعة</div>
                   </div>
                 </div>
               </div>
