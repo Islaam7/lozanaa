@@ -1,5 +1,12 @@
-import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap } from "lucide-react";
+import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap, ChevronLeft, Sun, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
+
+const offerImages = [
+  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQGEl8ItKWuzFg/messaging-image-720/B4DZ5eM.EHKsAU-/0/1779696919954?m=AQJqovvILV7HrAAAAZ5ePfDNxgGPJxiYp1BzR_mjNEStDC-mFFGKkAkukfg&ne=1&v=beta&t=p60IoOrHPpY5_WIvqLLbX-hIfhnqaTLGZLoMUr0XkMs",
+  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQH_OwX8mgx7XA/messaging-image-720/B4DZ5eNFfhI4AY-/0/1779696950303?m=AQIodMUIqwi4GgAAAZ5ePfDay_VoOFoAacI1465xD4MeqrnR3c4lOV1e-UA&ne=1&v=beta&t=Mf5q0Q-7F2Ms0x9OLi63CYeJSMt1ZXHnsEMj1YUUJDE",
+  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQE9Kdwe7O1X0Q/messaging-image-720/B4DZ5eNPK8HAAY-/0/1779696989779?m=AQI0nchRtu9hmgAAAZ5ePfDWnIHaflBhPjCsgmwXUClEBXrCEooe6GgqIvo&ne=1&v=beta&t=JSEhJlafSIae9FnJGRY59puDy61qSjCr82OcofVAFPc",
+  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQHVXdNqF6dyuA/messaging-image-720/B4DZ5eNOFWH4AU-/0/1779696985460?m=AQLv2gl44XmFWgAAAZ5ePfDkvfg0kFBpRfEVi4XoicyU7J0MgGist8AOFd0&ne=1&v=beta&t=YTMMS2EigS0jBoMts0KkifjdnNxf5_0ORfxNJGoo_VU",
+];
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,11 +21,11 @@ export default function App() {
       <header className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="text-2xl font-bold">
-                <img src="https://i.ibb.co/KxchXXLs/Group-1.png" alt="لوزان" className="h-10 w-auto" />
-              </div>
+            {/* Header Actions */}
+            <div className="hidden lg:flex items-center gap-4">
+              <button className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all">
+                مناسب لجميع السيارات
+              </button>
             </div>
 
             {/* Desktop Navigation */}
@@ -29,16 +36,11 @@ export default function App() {
               <a href="#about" className="text-sm hover:text-primary transition-colors">الآراء</a>
             </nav>
 
-            {/* Header Actions */}
-            <div className="hidden lg:flex items-center gap-4">
-              <button className="text-sm hover:text-primary transition-colors">تسجيل الدخول</button>
-              <button className="text-sm hover:text-primary transition-colors">حسابي</button>
-              <button className="p-2 hover:text-primary transition-colors">
-                <Search size={20} />
-              </button>
-              <button className="p-2 hover:text-primary transition-colors">
-                <User size={20} />
-              </button>
+            {/* Logo */}
+            <div className="flex items-center gap-2">
+              <div className="text-2xl font-bold">
+                <img src="https://i.ibb.co/KxchXXLs/Group-1.png" alt="لوزان" className="h-10 w-auto" />
+              </div>
             </div>
 
             {/* Mobile Menu Button */}
@@ -58,10 +60,9 @@ export default function App() {
                 <a href="#features" className="text-sm hover:text-primary transition-colors">الخدمات</a>
                 <a href="#about" className="text-sm hover:text-primary transition-colors">من نحن</a>
                 <a href="#about" className="text-sm hover:text-primary transition-colors">الآراء</a>
-                <div className="flex gap-4 pt-2">
-                  <button className="text-sm hover:text-primary transition-colors">تسجيل الدخول</button>
-                  <button className="text-sm hover:text-primary transition-colors">حسابي</button>
-                </div>
+                <button className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all">
+                  مناسب لجميع السيارات
+                </button>
               </nav>
             </div>
           )}
@@ -69,86 +70,166 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative min-h-screen flex items-end pb-0 overflow-hidden">
+      <section id="home" className="relative flex min-h-[790px] items-start justify-center overflow-hidden pb-[158px] pt-[108px] sm:min-h-screen sm:items-center sm:pb-0 sm:pt-20">
         {/* Full Background Image */}
         <img
-          src="https://i.ibb.co/5xGqVC6M/Chat-GPT-Image-May-23-2026-12-58-13-AM.png"
+          src="https://i.postimg.cc/59Cyg04d/Chat-GPT-Image-May-25-2026-11-42-16-AM.png"
           alt="سيارات لوزان"
-          className="absolute inset-0 w-full h-full object-cover"
+          className="hidden sm:block absolute inset-0 w-full h-full object-cover"
+        />
+        <img
+          src="https://i.postimg.cc/5ywWQyhD/f330d390-805d-44f2-b43d-6498bc827327.png"
+          alt="سيارات لوزان"
+          className="sm:hidden absolute inset-0 h-full w-full object-cover object-center"
         />
         {/* Dark overlay gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-black/45 sm:from-black/50 sm:via-black/20 sm:to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-transparent" />
 
         {/* Content overlay */}
         <div className="relative z-10 w-full">
-          <div className="container mx-auto px-4 pt-40 pb-8">
+          <div className="container mx-auto px-3.5 sm:px-4">
             {/* Hero Text */}
-            <div className="max-w-4xl mx-auto text-center">
-              <div className="inline-block bg-primary/20 border border-primary/40 text-primary text-sm px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
-                حماية سيارتك بأحدث التقنيات
-              </div>
-              <h1 className="text-5xl lg:text-7xl font-bold mb-4 leading-tight drop-shadow-2xl">
-                عزل حراري متقدم
+            <div className="mx-auto max-w-[360px] sm:mx-0 sm:max-w-2xl">
+              <h1 className="mb-2 text-center text-[2rem] font-bold leading-tight drop-shadow-2xl sm:mb-4 sm:text-right sm:text-6xl lg:text-7xl">
+                عروض العيد
               </h1>
-              <p className="text-xl text-white/80 mb-8 leading-relaxed">
-                تقنية النانو سيراميك الحديثة لحماية شاملة وعزل حراري فعّال. نقلل الحرارة، نعزز الخصوصية، ونضمن وضوح رؤية ممتاز على جميع السيارات.
-              </p>
-              <div className="flex flex-wrap gap-4 mb-10 justify-center">
-                <div className="flex items-center gap-2 text-sm bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                  <CheckCircle2 size={16} className="text-primary" />
-                  <span>عزل حراري</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                  <CheckCircle2 size={16} className="text-primary" />
-                  <span>نانو سيراميك</span>
-                </div>
-                <div className="flex items-center gap-2 text-sm bg-white/10 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/20">
-                  <CheckCircle2 size={16} className="text-primary" />
-                  <span>حماية شاملة</span>
-                </div>
+              <div className="mb-5 flex items-center justify-center gap-3 sm:mb-16 sm:justify-start sm:gap-4">
+                <div className="h-px w-8 bg-gradient-to-l from-yellow-500 to-transparent sm:max-w-[40px] sm:flex-1"></div>
+                <p className="whitespace-nowrap text-[13px] font-bold text-yellow-500 drop-shadow-lg sm:text-2xl sm:font-semibold lg:text-3xl">
+                  تظليلة نانو سيراميك بـ 270 ريال
+                </p>
+                <div className="h-px w-8 bg-gradient-to-r from-yellow-500 to-transparent sm:max-w-[40px] sm:flex-1"></div>
               </div>
-              <button className="bg-primary hover:bg-primary/90 text-white px-10 py-4 rounded-xl text-lg font-bold transition-all hover:scale-105 shadow-lg shadow-primary/30">
-                اطلب الآن
-              </button>
-            </div>
-          </div>
 
-          {/* Features Bar */}
-          <div className="container mx-auto px-4 mt-12">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 bg-black/60 backdrop-blur-md border-t border-white/10 rounded-t-2xl p-4">
-              <div className="flex items-center gap-3 p-3">
-                <Shield className="text-primary shrink-0" size={28} />
-                <div className="text-right">
-                  <div className="text-xs text-white/50">ضمان</div>
-                  <div className="text-sm font-semibold">راحة وثقة بضمان يمتد لـ 10 سنوات</div>
+              {/* Offers Cards */}
+              <div className="mb-5 max-w-full space-y-2.5 sm:mb-16 sm:max-w-md sm:space-y-5">
+                {/* Offer 1 */}
+                <div className="group flex min-h-[60px] items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#c52228]/95 px-3.5 py-2.5 shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur-md transition-transform hover:scale-105 sm:gap-0 sm:rounded-xl sm:border-2 sm:border-primary sm:bg-primary/90 sm:px-6 sm:py-5">
+                  <div className="flex items-center gap-3 sm:gap-4 flex-1">
+                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-white/15 sm:h-12 sm:w-12 sm:rounded-lg sm:bg-white/20">
+                      <FileText className="text-white/90 sm:h-6 sm:w-6 sm:text-white" size={13} />
+                    </div>
+                    <div className="text-right flex-1 min-w-0">
+                      <div className="truncate text-[12px] font-bold text-white sm:text-base sm:font-semibold">تظليلة نانو سيراميك</div>
+                    </div>
+                  </div>
+                  <div className="ml-2 flex-shrink-0 border-r border-white/15 pr-3 text-center sm:border-0 sm:pr-0 sm:text-right">
+                    <div className="text-lg font-extrabold leading-tight text-white sm:text-3xl sm:font-bold">270</div>
+                    <div className="text-[10px] text-white/80 sm:text-sm">ريال</div>
+                  </div>
+                </div>
+
+                {/* Offer 2 */}
+                <div className="group flex min-h-[60px] items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#c52228]/95 px-3.5 py-2.5 shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur-md transition-transform hover:scale-105 sm:gap-0 sm:rounded-xl sm:border-2 sm:border-primary sm:bg-primary/90 sm:p-6">
+                  <div className="flex items-center gap-3 sm:gap-4 flex-1">
+                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-white/15 sm:h-12 sm:w-12 sm:rounded-lg sm:bg-white/20">
+                      <FileText className="text-white/90 sm:h-6 sm:w-6 sm:text-white" size={13} />
+                    </div>
+                    <div className="text-right flex-1 min-w-0">
+                      <div className="truncate text-[12px] font-bold text-white sm:text-base sm:font-semibold">2 بكيت تظليلة نانو سيراميك</div>
+                    </div>
+                  </div>
+                  <div className="ml-2 flex-shrink-0 border-r border-white/15 pr-3 text-center sm:border-0 sm:pr-0 sm:text-right">
+                    <div className="text-lg font-extrabold leading-tight text-white sm:text-3xl sm:font-bold">500</div>
+                    <div className="text-[10px] text-white/80 sm:text-sm">ريال</div>
+                  </div>
                 </div>
               </div>
-              <div className="flex items-center gap-3 p-3">
-                <Calendar className="text-primary shrink-0" size={28} />
-                <div className="text-right">
-                  <div className="text-xs text-white/50">الجودة</div>
-                  <div className="text-sm font-semibold">خامات عالية الأداء</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-3">
-                <Clock className="text-primary shrink-0" size={28} />
-                <div className="text-right">
-                  <div className="text-xs text-white/50">التركيب</div>
-                  <div className="text-sm font-semibold">تركيب احترافي</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 p-3">
-                <MapPin className="text-primary shrink-0" size={28} />
-                <div className="text-right">
-                  <div className="text-xs text-white/50">التغطية</div>
-                  <div className="text-sm font-semibold">جميع أنواع السيارات</div>
+
+              {/* Bottom Section */}
+              <div className="relative mb-0 flex flex-col items-center gap-2.5 sm:mb-56 sm:flex-row sm:gap-6 lg:gap-7">
+                {/* Buttons - First */}
+                <a href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex min-h-[45px] w-[160px] items-center justify-center gap-1.5 rounded-lg border border-yellow-500 bg-primary px-4 text-[13px] font-bold text-white shadow-[0_8px_22px_rgba(220,38,38,0.35)] transition-all hover:scale-105 hover:border-yellow-400 hover:bg-primary/90 sm:w-auto sm:flex-none sm:gap-2 sm:border-2 sm:px-8 sm:py-4 sm:text-base sm:font-semibold">
+                  <span>احجز عبر واتساب</span>
+                  <ChevronLeft size={15} className="sm:h-6 sm:w-6" />
+                </a>
+
+                {/* Button - Second */}
+                <a href="https://salla.sa/lozan-sa/%D8%A3%D9%81%D8%B6%D9%84-%D8%AD%D9%85%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%B2%D8%AC%D8%A7%D8%AC-%D8%A7%D9%84%D8%A3%D9%85%D8%A7%D9%85%D9%8A-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A8%D8%B9%D8%B2%D9%84-%D9%88%D9%85%D8%AA%D8%A7%D9%86%D8%A9-%D9%85%D9%85%D8%AA%D8%A7%D8%B2%D8%A9/p34891988" target="_blank" rel="noopener noreferrer" className="flex min-h-[45px] w-[160px] items-center justify-center gap-1.5 rounded-lg border border-yellow-500 bg-black/20 px-4 text-[13px] font-bold text-white backdrop-blur-sm transition-all hover:scale-105 hover:border-yellow-400 hover:bg-yellow-500/10 sm:w-auto sm:flex-none sm:gap-2 sm:border-2 sm:px-8 sm:py-4 sm:text-base sm:font-semibold">
+                  <span>اشتري من المتجر</span>
+                  <ChevronLeft size={15} className="sm:h-6 sm:w-6" />
+                </a>
+
+                {/* Warranty Badge */}
+                <div className="absolute -bottom-[72px] left-1/2 -translate-x-1/2 flex-shrink-0 sm:static sm:translate-x-0">
+                  <img
+                    src="https://i.postimg.cc/PrztVVCv/Chat-GPT-Image-May-25-2026-12-03-58-PM-removebg-preview.png"
+                    alt="ضمان 10 سنوات"
+                    className="h-[66px] w-[66px] drop-shadow-lg sm:h-24 sm:w-24 lg:h-28 lg:w-28"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* Bottom Features Bar */}
+        <div className="absolute bottom-0 left-0 right-0 z-20 bg-gradient-to-t from-black via-black/85 to-transparent sm:from-black/60 sm:to-transparent">
+          <div className="border-t border-white/5 sm:border-white/10"></div>
+          <div className="container mx-auto px-4 py-2.5 sm:py-5">
+            <div className="grid grid-cols-2 gap-0 text-[12px] text-white/80 sm:grid-cols-4 sm:gap-0 sm:text-lg">
+              <div className="flex items-center justify-center gap-2 border-b border-l border-white/5 px-2 py-3.5 sm:justify-start sm:gap-5 sm:border-b-0 sm:py-5 sm:px-5">
+                <Sun size={18} className="flex-shrink-0 text-yellow-500 sm:h-6 sm:w-6" />
+                <span className="hidden sm:inline">عزل حراري ممتاز</span>
+                <span className="sm:hidden">عزل حراري</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 border-b border-white/5 px-2 py-3.5 sm:justify-start sm:gap-5 sm:border-b-0 sm:border-l sm:py-5 sm:px-5">
+                <Shield size={18} className="flex-shrink-0 text-yellow-500 sm:h-6 sm:w-6" />
+                <span className="hidden sm:inline">حماية من الأشعة فوق البنفسجية</span>
+                <span className="sm:hidden">حماية UV</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 border-l border-white/5 px-2 py-3.5 sm:justify-start sm:gap-5 sm:py-5 sm:px-5">
+                <Eye size={18} className="flex-shrink-0 text-yellow-500 sm:h-6 sm:w-6" />
+                <span className="hidden sm:inline">وضوح رؤية عالي</span>
+                <span className="sm:hidden">وضوح رؤية</span>
+              </div>
+              <div className="flex items-center justify-center gap-2 px-2 py-3.5 sm:justify-start sm:gap-5 sm:py-5 sm:px-5">
+                <Zap size={18} className="flex-shrink-0 text-yellow-500 sm:h-6 sm:w-6" />
+                <span className="hidden sm:inline">مظهر أنيق وحديث</span>
+                <span className="sm:hidden">مظهر أنيق</span>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
+
+      {/* Eid Offer Gallery */}
+      <section className="bg-[#090909] pt-14 pb-7 sm:pt-20 sm:pb-10">
+        <div className="container mx-auto px-4">
+          <div className="mb-9 text-center sm:mb-11">
+            <h2 className="text-3xl font-bold text-white sm:text-[2.55rem]">اختر العرض المناسب لك</h2>
+            <p className="mt-2 text-sm text-white/55 sm:text-base">عروض حصرية لفترة محدودة بمناسبة عيد الأضحى</p>
+          </div>
+
+          <div dir="ltr" className="mx-auto grid max-w-[1160px] grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+            {offerImages.map((image, index) => (
+              <div
+                key={image}
+                className="overflow-hidden rounded-xl border border-white/10 bg-[#070707] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.34)] sm:p-3"
+              >
+                <img
+                  src={image}
+                  alt={`عرض لوزان ${index + 1}`}
+                  className="w-full rounded-lg object-cover"
+                />
+                <a
+                  dir="rtl"
+                  href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2.5 flex min-h-10 w-full items-center justify-center gap-1.5 rounded-md border border-red-400/20 bg-[#dc2525] px-2 text-[11px] font-bold text-white shadow-[0_7px_18px_rgba(220,37,37,0.26)] transition-all hover:bg-[#ed3030] sm:mt-3 sm:min-h-[48px] sm:gap-2 sm:text-sm"
+                >
+                  <span>{index === 3 ? "استبدل تظليلك الآن" : "احجز عبر واتساب"}</span>
+                  <WhatsAppIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+    
 
       {/* Why Lozan Section */}
       <section id="features" className="py-20 relative">
@@ -223,71 +304,106 @@ export default function App() {
                   </div>
                 </div>
               </div>
-
-              <button className="mt-8 w-full bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-xl font-semibold transition-all hover:scale-105">
-                احجز استشارة مجانية
-              </button>
             </div>
           </div>
         </div>
       </section>
 
       {/* Customer Reviews */}
-      <section className="py-20 bg-gradient-to-b from-transparent to-black/30">
-        <div className="container mx-auto px-4">
+      <style>{`
+        @keyframes slideInUp {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        @keyframes fadeInScale {
+          from {
+            opacity: 0;
+            transform: scale(0.95);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+        .review-card {
+          animation: slideInUp 0.8s ease-out forwards;
+        }
+        .review-card:nth-child(1) { animation-delay: 0.1s; }
+        .review-card:nth-child(2) { animation-delay: 0.3s; }
+        .review-card:nth-child(3) { animation-delay: 0.5s; }
+        .review-comment {
+          animation: fadeInScale 0.6s ease-out forwards;
+          animation-delay: 0.6s;
+        }
+      `}</style>
+      <section className="py-20 bg-gradient-to-b from-transparent via-black/40 to-black/60 relative overflow-hidden">
+        {/* Cinematic background effect */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold mb-4">آراء العملاء</h2>
-            <p className="text-muted-foreground">تقييمات المنتج (20788)</p>
+            <h2 className="text-4xl sm:text-5xl font-bold mb-2">آراء العملاء</h2>
+            <p className="text-yellow-500 font-semibold">تقييمات المنتج (20788)</p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          <div className="flex flex-col gap-6 max-w-2xl mx-auto">
             {/* Review Card 1 */}
-            <div className="bg-secondary/30 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+            <div className="review-card bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-colors">
               <div className="flex justify-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={20} className="fill-primary text-primary" />
+                  <Star key={i} size={24} className="fill-primary text-primary" />
                 ))}
               </div>
-              <h3 className="font-bold text-center mb-3">Sara Afghanal</h3>
-              <p className="text-sm text-muted-foreground text-center leading-relaxed">
-                الخدمة ممتازة والتركيب احترافي جداً. شعرت بالفرق من أول رحلة، الحرارة نقصت كثير والرؤية واضحة
-              </p>
+              <h3 className="font-bold text-center mb-4 text-xl text-white">Ziad Saud</h3>
+              <div className="review-comment bg-white text-black rounded-xl p-5 text-center">
+                <p className="text-sm sm:text-base font-semibold leading-relaxed">
+                  الفرق بين معك من أول وقفة في الشمس تريد كيف صار أسرع بمراحل.. تجربة تستحق 10/10
+                </p>
+              </div>
             </div>
 
             {/* Review Card 2 */}
-            <div className="bg-secondary/30 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+            <div className="review-card bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-colors">
               <div className="flex justify-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={20} className="fill-primary text-primary" />
+                  <Star key={i} size={24} className="fill-primary text-primary" />
                 ))}
               </div>
-              <h3 className="font-bold text-center mb-3">Ziad Saud</h3>
-              <p className="text-sm text-muted-foreground text-center leading-relaxed">
-                أفضل استثمار لحماية سيارتي. الفريق محترف والخدمة متقنة، وسعر معقول جداً بالنسبة للجودة
-              </p>
+              <h3 className="font-bold text-center mb-4 text-xl text-white">إبراهيم بن خليف المطيري</h3>
+              <div className="review-comment bg-white text-black rounded-xl p-5 text-center">
+                <p className="text-sm sm:text-base font-semibold leading-relaxed">
+                  أفضل عازل حراري يحميك من الشمس
+                </p>
+              </div>
             </div>
 
             {/* Review Card 3 */}
-            <div className="bg-secondary/30 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+            <div className="review-card bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-colors">
               <div className="flex justify-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={20} className="fill-primary text-primary" />
+                  <Star key={i} size={24} className="fill-primary text-primary" />
                 ))}
               </div>
-              <h3 className="font-bold text-center mb-3">إبراهيم عبد الصادق</h3>
-              <p className="text-sm text-muted-foreground text-center leading-relaxed">
-                احترافيين جداً في التركيب والتفاصيل. كل شيء منظم، والنتيجة فعّالة جداً في تقليل الحرارة
-              </p>
+              <h3 className="font-bold text-center mb-4 text-xl text-white">Sara Alqahtani</h3>
+              <div className="review-comment bg-white text-black rounded-xl p-5 text-center">
+                <p className="text-sm sm:text-base font-semibold leading-relaxed">
+                  العازل أثيق وشكله راقي على السيارة كأنه وكالة
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Pagination Dots */}
-          <div className="flex justify-center gap-2 mt-8">
-            <div className="w-2 h-2 rounded-full bg-primary"></div>
-            <div className="w-2 h-2 rounded-full bg-white/20"></div>
-            <div className="w-2 h-2 rounded-full bg-white/20"></div>
-            <div className="w-2 h-2 rounded-full bg-white/20"></div>
-          </div>
+         
         </div>
       </section>
 
@@ -375,32 +491,48 @@ export default function App() {
         </div>
       </section>
 
-      {/* Newsletter Section */}
-      <section className="py-20 bg-gradient-to-b from-black/30 to-black/60">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center">
-            <div className="mb-8">
-              <Mail className="text-primary mx-auto mb-4" size={48} />
-              <h2 className="text-3xl lg:text-4xl font-bold mb-4">اشترك الآن</h2>
-              <p className="text-muted-foreground">
-                اشترك في النشرة الإخبارية للحصول على أحدث العروض والنصائح لحماية سيارتك
-              </p>
+
+  {/* Offer Booking Banner */}
+      <section className="bg-[#090909] px-4 pb-14 pt-7 sm:pb-20 sm:pt-10">
+        <div className="relative mx-auto max-w-[1160px] overflow-hidden rounded-xl border border-white/15 bg-[#141414] px-5 py-6 sm:px-8 lg:px-10">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_50%,rgba(255,255,255,0.06),transparent_36%),linear-gradient(105deg,rgba(0,0,0,0.25),transparent_55%)]" />
+          <div dir="ltr" className="relative flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
+            <div className="flex shrink-0 items-center justify-center rounded-full border-2 border-primary/85 p-2">
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-[0_0_22px_rgba(220,38,38,0.42)] sm:h-[74px] sm:w-[74px]">
+                <Mail className="h-8 w-8 text-white sm:h-9 sm:w-9" />
+              </div>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
-              <input 
-                type="email" 
-                placeholder="بريدك الإلكتروني"
-                className="flex-1 bg-input-background border border-input rounded-lg px-4 py-3 text-right focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <button className="bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold transition-all hover:scale-105 whitespace-nowrap">
-                اشترك الآن
-              </button>
+            <div dir="rtl" className="text-center lg:text-right">
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">لا تفوت عروض العيد</h2>
+              <p className="mt-1 text-base font-medium text-white/65 sm:text-lg">احجز الآن واستمتع بأعلى حماية<br className="hidden sm:block" /> لسيارتك بأفضل الأسعار</p>
+            </div>
+
+            <div dir="ltr" className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
+              <a
+                href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                dir="rtl"
+                className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg bg-primary px-7 text-lg font-bold text-white transition-colors hover:bg-red-500"
+              >
+                <WhatsAppIcon />
+                <span>احجز عبر واتساب</span>
+              </a>
+              <a
+                href="https://salla.sa/lozan-sa/"
+                target="_blank"
+                rel="noopener noreferrer"
+                dir="rtl"
+                className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg border border-yellow-500/70 bg-black/15 px-7 text-lg font-bold text-white transition-colors hover:bg-yellow-500/10"
+              >
+                <ShoppingBag className="h-6 w-6 text-yellow-500" />
+                <span>اشتري من المتجر</span>
+              </a>
             </div>
           </div>
         </div>
       </section>
-
       {/* Footer */}
       <footer className="bg-black border-t border-white/10 py-12">
         <div className="container mx-auto px-4">
@@ -482,6 +614,14 @@ export default function App() {
 }
 
 // Helper Components
+function WhatsAppIcon({ className = "h-6 w-6" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={`${className} fill-current`}>
+      <path d="M19.11 4.82A9.8 9.8 0 0 0 3.58 16.4L2.2 21.45l5.17-1.36A9.8 9.8 0 1 0 19.11 4.82Zm-7.05 15.12a8 8 0 0 1-4.08-1.12l-.29-.18-3.07.8.82-2.98-.19-.31a8 8 0 1 1 6.81 3.79Zm4.39-5.98c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12s-.62.78-.76.94c-.14.16-.28.18-.52.06a6.53 6.53 0 0 1-1.93-1.19 7.2 7.2 0 0 1-1.34-1.67c-.14-.24-.02-.37.1-.49l.36-.42c.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.2-.47-.4-.4-.54-.41h-.46a.88.88 0 0 0-.64.3c-.22.24-.84.82-.84 2s.86 2.32.98 2.48a9.09 9.09 0 0 0 3.77 3.33c.53.23.94.36 1.26.46.53.17 1.01.14 1.39.09.42-.06 1.42-.58 1.62-1.14.2-.56.2-1.04.14-1.14-.06-.1-.22-.16-.46-.28Z" />
+    </svg>
+  );
+}
+
 function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
     <div className="flex items-center gap-3 bg-secondary/30 border border-white/10 rounded-lg p-3">
