@@ -1,6 +1,7 @@
 import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap, ChevronLeft, Sun, Moon, ShoppingBag, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import logoImage from "../../assets/logo.png";
+import darkLogoImage from "../../assets/logo2.png";
 import featuredOfferImage from "../../assets/عرض1.png";
 import offerImage1 from "../../assets/1779696919954.png";
 
@@ -48,7 +49,7 @@ export default function App() {
             <div className="flex items-center gap-10 lg:gap-14">
               {/* Logo */}
               <a href="#home" aria-label="لوزان - الرئيسية" className="flex items-center">
-                <img src={logoImage} alt="لوزان" className="h-11 w-auto object-contain sm:h-12" />
+                <img src={isDarkMode ? darkLogoImage : logoImage} alt="لوزان" className="h-11 w-auto object-contain sm:h-12" />
               </a>
 
               {/* Desktop Navigation */}
