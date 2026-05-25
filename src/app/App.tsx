@@ -3,17 +3,27 @@ import { useState, useEffect } from "react";
 import logoImage from "../../assets/logo.png";
 import darkLogoImage from "../../assets/logo2.png";
 import featuredOfferImage from "../../assets/عرض1.png";
-import offerImage1 from "../../assets/1779696919954.png";
+import cityOfferImage from "../../assets/1779696989779.png";
+
+const whatsappBookingUrl = `https://api.whatsapp.com/send/?phone=966535101960&text=${encodeURIComponent("السلام عليكم، أرغب بحجز عرض تظليلة النانو سيراميك بـ 270 ريال.")}&type=phone_number&app_absent=0`;
 
 const offerImages = [
-  offerImage1,
-  featuredOfferImage,
+  {
+    src: featuredOfferImage,
+    title: "عرض العيد الخاص",
+    description: "حماية احترافية وضمان حتى 10 سنوات",
+  },
+  {
+    src: cityOfferImage,
+    title: "سيارتك جاهزة قبل العيد",
+    description: "تظليلة نانو سيراميك بـ 270 ريال",
+  },
 ];
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedOfferImage, setSelectedOfferImage] = useState<string | null>(null);
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(true);
   
   useEffect(() => {
     document.title = "لوزان";
@@ -41,7 +51,7 @@ export default function App() {
   }, [selectedOfferImage]);
 
   return (
-    <div dir="rtl" className={`${isDarkMode ? "dark" : ""} min-h-screen bg-background text-foreground font-['Cairo'] transition-colors duration-300`}>
+    <div dir="rtl" className={`${isDarkMode ? "dark" : ""} min-h-screen bg-background pb-20 text-foreground font-['Cairo'] transition-colors duration-300 sm:pb-0`}>
       {/* Header */}
       <header className={`fixed top-0 w-full z-50 backdrop-blur-md border-b transition-colors duration-300 ${isDarkMode ? "border-white/10 bg-black/80" : "border-black/10 bg-white/90 shadow-sm"}`}>
         <div className="container mx-auto px-4">
@@ -127,74 +137,50 @@ export default function App() {
           <div className="container mx-auto px-3.5 sm:px-4">
             {/* Hero Text */}
             <div className="mx-auto max-w-[360px] sm:mx-0 sm:max-w-2xl">
-              <h1 className="mb-2 text-center text-[2rem] font-bold leading-tight drop-shadow-2xl sm:mb-4 sm:text-right sm:text-6xl lg:text-7xl">
-                عروض العيد
+              <h1 className="mb-2 text-center text-[2rem] font-bold leading-tight drop-shadow-2xl sm:mb-4 sm:text-right sm:text-5xl lg:text-6xl">
+                تظليلة نانو سيراميك
               </h1>
-              <div className="mb-5 flex items-center justify-center gap-3 sm:mb-16 sm:justify-start sm:gap-4">
+              <div className="mb-3 flex items-center justify-center gap-3 sm:justify-start sm:gap-4">
                 <div className="h-px w-8 bg-gradient-to-l from-yellow-500 to-transparent sm:max-w-[40px] sm:flex-1"></div>
-                <p className="whitespace-nowrap text-[13px] font-bold text-yellow-500 drop-shadow-lg sm:text-2xl sm:font-semibold lg:text-3xl">
-                  تظليلة نانو سيراميك بـ 270 ريال
+                <p className="whitespace-nowrap text-2xl font-extrabold text-yellow-500 drop-shadow-lg sm:text-4xl lg:text-5xl">
+                  بـ 270 ريال
                 </p>
                 <div className="h-px w-8 bg-gradient-to-r from-yellow-500 to-transparent sm:max-w-[40px] sm:flex-1"></div>
               </div>
+              <p className="mb-5 text-center text-sm font-medium text-white/90 drop-shadow sm:mb-8 sm:text-right sm:text-lg">
+                حماية من الحرارة والأشعة فوق البنفسجية بضمان حتى 10 سنوات
+              </p>
 
-              {/* Offers Cards */}
-              <div className="mb-5 max-w-full space-y-2.5 sm:mb-16 sm:max-w-md sm:space-y-5">
-                {/* Offer 1 */}
-                <div className="group flex min-h-[60px] items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#c52228]/95 px-3.5 py-2.5 shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur-md transition-transform hover:scale-105 sm:gap-0 sm:rounded-xl sm:border-2 sm:border-primary sm:bg-primary/90 sm:px-6 sm:py-5">
-                  <div className="flex items-center gap-3 sm:gap-4 flex-1">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-white/15 sm:h-12 sm:w-12 sm:rounded-lg sm:bg-white/20">
-                      <FileText className="text-white/90 sm:h-6 sm:w-6 sm:text-white" size={13} />
-                    </div>
-                    <div className="text-right flex-1 min-w-0">
-                      <div className="truncate text-[12px] font-bold text-white sm:text-base sm:font-semibold">تظليلة نانو سيراميك</div>
-                    </div>
-                  </div>
-                  <div className="ml-2 flex-shrink-0 border-r border-white/15 pr-3 text-center sm:border-0 sm:pr-0 sm:text-right">
-                    <div className="text-lg font-extrabold leading-tight text-white sm:text-3xl sm:font-bold">270</div>
-                    <div className="text-[10px] text-white/80 sm:text-sm">ريال</div>
-                  </div>
-                </div>
-
-                {/* Offer 2 */}
-                <div className="group flex min-h-[60px] items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#c52228]/95 px-3.5 py-2.5 shadow-[0_10px_24px_rgba(0,0,0,0.2)] backdrop-blur-md transition-transform hover:scale-105 sm:gap-0 sm:rounded-xl sm:border-2 sm:border-primary sm:bg-primary/90 sm:p-6">
-                  <div className="flex items-center gap-3 sm:gap-4 flex-1">
-                    <div className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-md bg-white/15 sm:h-12 sm:w-12 sm:rounded-lg sm:bg-white/20">
-                      <FileText className="text-white/90 sm:h-6 sm:w-6 sm:text-white" size={13} />
-                    </div>
-                    <div className="text-right flex-1 min-w-0">
-                      <div className="truncate text-[12px] font-bold text-white sm:text-base sm:font-semibold">2 بكيت تظليلة نانو سيراميك</div>
+              {/* Trust points close to the primary action */}
+              <div className="mb-5 grid max-w-full grid-cols-2 gap-2.5 sm:mb-8 sm:max-w-lg sm:gap-3">
+                {[
+                  { icon: <Sun size={18} />, title: "حجب حتى 99%", detail: "من أشعة الشمس" },
+                  { icon: <Shield size={18} />, title: "ضمان حتى 10 سنوات", detail: "على جودة التركيب" },
+                  { icon: <CheckCircle2 size={18} />, title: "تركيب احترافي", detail: "لجميع السيارات" },
+                  { icon: <DollarSign size={18} />, title: "تابي وتمارا", detail: "خيارات دفع ميسرة" },
+                ].map((benefit) => (
+                  <div key={benefit.title} className="flex items-start gap-2 rounded-lg border border-white/15 bg-black/30 p-2.5 text-right backdrop-blur-sm sm:p-3">
+                    <span className="mt-0.5 shrink-0 text-yellow-500">{benefit.icon}</span>
+                    <div>
+                      <div className="text-[11px] font-bold sm:text-sm">{benefit.title}</div>
+                      <div className="text-[10px] text-white/70 sm:text-xs">{benefit.detail}</div>
                     </div>
                   </div>
-                  <div className="ml-2 flex-shrink-0 border-r border-white/15 pr-3 text-center sm:border-0 sm:pr-0 sm:text-right">
-                    <div className="text-lg font-extrabold leading-tight text-white sm:text-3xl sm:font-bold">500</div>
-                    <div className="text-[10px] text-white/80 sm:text-sm">ريال</div>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Bottom Section */}
-              <div className="relative mb-0 flex flex-col items-center gap-2.5 sm:mb-56 sm:flex-row sm:gap-6 lg:gap-7">
+              <div className="mb-0 flex flex-col items-center gap-3 sm:mb-28 sm:items-start">
                 {/* Buttons - First */}
-                <a href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer" className="flex min-h-[45px] w-[160px] items-center justify-center gap-1.5 rounded-lg border border-yellow-500 bg-primary px-4 text-[13px] font-bold text-white shadow-[0_8px_22px_rgba(220,38,38,0.35)] transition-all hover:scale-105 hover:border-yellow-400 hover:bg-primary/90 sm:w-auto sm:flex-none sm:gap-2 sm:border-2 sm:px-8 sm:py-4 sm:text-base sm:font-semibold">
-                  <span>احجز عبر واتساب</span>
-                  <ChevronLeft size={15} className="sm:h-6 sm:w-6" />
+                <a href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-[48px] w-[220px] items-center justify-center gap-2 rounded-lg border border-yellow-500 bg-primary px-5 text-sm font-bold text-white shadow-[0_8px_22px_rgba(220,38,38,0.35)] transition-all hover:scale-105 hover:border-yellow-400 hover:bg-primary/90 sm:min-h-[58px] sm:w-auto sm:px-9 sm:text-lg">
+                  <WhatsAppIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                  <span>احجز عرض 270 ريال</span>
                 </a>
 
                 {/* Button - Second */}
-                <a href="https://salla.sa/lozan-sa/%D8%A3%D9%81%D8%B6%D9%84-%D8%AD%D9%85%D8%A7%D9%8A%D8%A9-%D8%A7%D9%84%D8%B2%D8%AC%D8%A7%D8%AC-%D8%A7%D9%84%D8%A3%D9%85%D8%A7%D9%85%D9%8A-%D9%84%D9%84%D8%B3%D9%8A%D8%A7%D8%B1%D8%A7%D8%AA-%D8%A8%D8%B9%D8%B2%D9%84-%D9%88%D9%85%D8%AA%D8%A7%D9%86%D8%A9-%D9%85%D9%85%D8%AA%D8%A7%D8%B2%D8%A9/p34891988" target="_blank" rel="noopener noreferrer" className="flex min-h-[45px] w-[160px] items-center justify-center gap-1.5 rounded-lg border border-yellow-500 bg-black/20 px-4 text-[13px] font-bold text-white backdrop-blur-sm transition-all hover:scale-105 hover:border-yellow-400 hover:bg-yellow-500/10 sm:w-auto sm:flex-none sm:gap-2 sm:border-2 sm:px-8 sm:py-4 sm:text-base sm:font-semibold">
+                <a href="https://salla.sa/lozan-sa/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-white/80 underline decoration-white/30 underline-offset-4 transition-colors hover:text-yellow-400 sm:text-sm">
                   <span>اشتري من المتجر</span>
-                  <ChevronLeft size={15} className="sm:h-6 sm:w-6" />
                 </a>
-
-                {/* Warranty Badge */}
-                <div className="absolute -bottom-[72px] left-1/2 -translate-x-1/2 flex-shrink-0 sm:static sm:translate-x-0">
-                  <img
-                    src="https://i.postimg.cc/PrztVVCv/Chat-GPT-Image-May-25-2026-12-03-58-PM-removebg-preview.png"
-                    alt="ضمان 10 سنوات"
-                    className="h-[66px] w-[66px] drop-shadow-lg sm:h-24 sm:w-24 lg:h-28 lg:w-28"
-                  />
-                </div>
               </div>
             </div>
           </div>
@@ -222,8 +208,8 @@ export default function App() {
               </div>
               <div className="flex items-center justify-center gap-2 px-2 py-3.5 sm:justify-start sm:gap-5 sm:py-5 sm:px-5">
                 <Zap size={18} className="flex-shrink-0 text-yellow-500 sm:h-6 sm:w-6" />
-                <span className="hidden sm:inline">مظهر أنيق وحديث</span>
-                <span className="sm:hidden">مظهر أنيق</span>
+                <span className="hidden sm:inline">ضمان حتى 10 سنوات</span>
+                <span className="sm:hidden">ضمان 10 سنوات</span>
               </div>
             </div>
           </div>
@@ -239,30 +225,40 @@ export default function App() {
           </div>
 
           <div dir="ltr" className="mx-auto grid max-w-[580px] grid-cols-2 gap-3 sm:gap-5">
-            {offerImages.map((image, index) => (
+            {offerImages.map((offer, index) => (
               <div
-                key={image}
+                key={offer.src}
                 className={`overflow-hidden rounded-xl border p-2 shadow-[0_14px_38px_rgba(0,0,0,0.12)] transition-colors duration-300 sm:p-3 ${isDarkMode ? "border-white/10 bg-[#070707]" : "border-black/10 bg-white"}`}
               >
                 <button
                   type="button"
                   onClick={() => {
                     if (window.matchMedia("(max-width: 639px)").matches) {
-                      setSelectedOfferImage(image);
+                      setSelectedOfferImage(offer.src);
                     }
                   }}
                   aria-label={`عرض صورة لوزان ${index + 1} بحجم كامل`}
                   className="block w-full cursor-zoom-in sm:cursor-default"
                 >
                   <img
-                    src={image}
-                    alt={`عرض لوزان ${index + 1}`}
+                    src={offer.src}
+                    alt={offer.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full rounded-lg object-cover"
                   />
                 </button>
+                <div dir="rtl" className="px-1 pb-1 pt-2.5 text-right sm:pt-3">
+                  <h3 className="text-sm font-bold sm:text-base">{offer.title}</h3>
+                  <p className="mt-1 text-[11px] text-muted-foreground sm:text-xs">{offer.description}</p>
+                  <div className="mt-2 flex flex-wrap justify-end gap-1.5 text-[10px] font-semibold text-yellow-500 sm:text-xs">
+                    <span className="rounded-full border border-yellow-500/25 px-2 py-1">ضمان حتى 10 سنوات</span>
+                    <span className="rounded-full border border-yellow-500/25 px-2 py-1">حجب حتى 99%</span>
+                  </div>
+                </div>
                 <a
                   dir="rtl"
-                  href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0"
+                  href={whatsappBookingUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-2.5 flex min-h-10 w-full items-center justify-center gap-1.5 rounded-md border border-red-400/20 bg-[#dc2525] px-2 text-[11px] font-bold text-white shadow-[0_7px_18px_rgba(220,37,37,0.26)] transition-all hover:bg-[#ed3030] sm:mt-3 sm:min-h-[48px] sm:gap-2 sm:text-sm"
@@ -424,7 +420,7 @@ export default function App() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-12">
             <h2 className="text-4xl sm:text-5xl font-bold mb-2">آراء العملاء</h2>
-            <p className="text-yellow-500 font-semibold">تقييمات المنتج (20788)</p>
+            <p className="text-yellow-500 font-semibold">تجارب عملائنا مع حماية لوزان</p>
           </div>
 
           <div className="flex flex-col gap-6 max-w-2xl mx-auto">
@@ -582,21 +578,21 @@ export default function App() {
 
             <div dir="ltr" className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
               <a
-                href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0"
+                href={whatsappBookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 dir="rtl"
                 className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg bg-primary px-7 text-lg font-bold text-white transition-colors hover:bg-red-500"
               >
                 <WhatsAppIcon />
-                <span>احجز عبر واتساب</span>
+                <span>احجز عرض 270 ريال</span>
               </a>
               <a
                 href="https://salla.sa/lozan-sa/"
                 target="_blank"
                 rel="noopener noreferrer"
                 dir="rtl"
-                className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg border border-yellow-500/70 bg-transparent px-7 text-lg font-bold transition-colors hover:bg-yellow-500/10"
+                className="flex min-h-[44px] items-center justify-center gap-2 px-4 text-sm font-medium text-muted-foreground transition-colors hover:text-yellow-500"
               >
                 <ShoppingBag className="h-6 w-6 text-yellow-500" />
                 <span>اشتري من المتجر</span>
@@ -681,6 +677,18 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      <div className="fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-black/90 p-3 backdrop-blur-md sm:hidden">
+        <a
+          href={whatsappBookingUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-h-[54px] w-full items-center justify-center gap-2 rounded-lg bg-primary px-4 text-base font-bold text-white shadow-[0_8px_24px_rgba(220,38,38,0.38)]"
+        >
+          <WhatsAppIcon className="h-5 w-5" />
+          <span>احجز عرض 270 ريال عبر واتساب</span>
+        </a>
+      </div>
     </div>
   );
 }
