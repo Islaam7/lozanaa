@@ -16,7 +16,7 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   useEffect(() => {
-    document.title = "لوزان - حماية السيارات بتقنية النانو سيراميك";
+    document.title = "لوزان";
   }, []);
 
   return (
