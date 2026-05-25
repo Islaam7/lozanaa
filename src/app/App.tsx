@@ -1,11 +1,15 @@
 import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap, ChevronLeft, Sun, ShoppingBag } from "lucide-react";
 import { useState, useEffect } from "react";
+import offerImage1 from "../../assets/1779696919954.png";
+import offerImage2 from "../../assets/1779696950303 (1).png";
+import offerImage3 from "../../assets/1779696989779.png";
+import offerImage4 from "../../assets/1779696985460.png";
 
 const offerImages = [
-  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQGEl8ItKWuzFg/messaging-image-720/B4DZ5eM.EHKsAU-/0/1779696919954?m=AQJqovvILV7HrAAAAZ5ePfDNxgGPJxiYp1BzR_mjNEStDC-mFFGKkAkukfg&ne=1&v=beta&t=p60IoOrHPpY5_WIvqLLbX-hIfhnqaTLGZLoMUr0XkMs",
-  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQH_OwX8mgx7XA/messaging-image-720/B4DZ5eNFfhI4AY-/0/1779696950303?m=AQIodMUIqwi4GgAAAZ5ePfDay_VoOFoAacI1465xD4MeqrnR3c4lOV1e-UA&ne=1&v=beta&t=Mf5q0Q-7F2Ms0x9OLi63CYeJSMt1ZXHnsEMj1YUUJDE",
-  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQE9Kdwe7O1X0Q/messaging-image-720/B4DZ5eNPK8HAAY-/0/1779696989779?m=AQI0nchRtu9hmgAAAZ5ePfDWnIHaflBhPjCsgmwXUClEBXrCEooe6GgqIvo&ne=1&v=beta&t=JSEhJlafSIae9FnJGRY59puDy61qSjCr82OcofVAFPc",
-  "https://www.linkedin.com/dms/prv/image/v2/D4D06AQHVXdNqF6dyuA/messaging-image-720/B4DZ5eNOFWH4AU-/0/1779696985460?m=AQLv2gl44XmFWgAAAZ5ePfDkvfg0kFBpRfEVi4XoicyU7J0MgGist8AOFd0&ne=1&v=beta&t=YTMMS2EigS0jBoMts0KkifjdnNxf5_0ORfxNJGoo_VU",
+  offerImage1,
+  offerImage2,
+  offerImage3,
+  offerImage4,
 ];
 
 export default function App() {
