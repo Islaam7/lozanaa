@@ -1,72 +1,103 @@
-import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap, ChevronLeft, Sun, ShoppingBag } from "lucide-react";
+import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap, ChevronLeft, Sun, Moon, ShoppingBag, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import logoImage from "../../assets/logo.png";
+import featuredOfferImage from "../../assets/عرض1.png";
 import offerImage1 from "../../assets/1779696919954.png";
-import offerImage2 from "../../assets/1779696950303 (1).png";
-import offerImage3 from "../../assets/1779696989779.png";
-import offerImage4 from "../../assets/1779696985460.png";
 
 const offerImages = [
   offerImage1,
-  offerImage2,
-  offerImage3,
-  offerImage4,
+  featuredOfferImage,
 ];
 
 export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [selectedOfferImage, setSelectedOfferImage] = useState<string | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   
   useEffect(() => {
     document.title = "لوزان";
   }, []);
 
+  useEffect(() => {
+    if (!selectedOfferImage) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setSelectedOfferImage(null);
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [selectedOfferImage]);
+
   return (
-    <div dir="rtl" className="min-h-screen bg-[#0a0a0a] text-white font-['Cairo']">
+    <div dir="rtl" className={`${isDarkMode ? "dark" : ""} min-h-screen bg-background text-foreground font-['Cairo'] transition-colors duration-300`}>
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
+      <header className={`fixed top-0 w-full z-50 backdrop-blur-md border-b transition-colors duration-300 ${isDarkMode ? "border-white/10 bg-black/80" : "border-black/10 bg-white/90 shadow-sm"}`}>
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-20">
-            {/* Header Actions */}
-            <div className="hidden lg:flex items-center gap-4">
-              <button className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all">
-                مناسب لجميع السيارات
+            <div className="flex items-center gap-10 lg:gap-14">
+              {/* Logo */}
+              <a href="#home" aria-label="لوزان - الرئيسية" className="flex items-center">
+                <img src={logoImage} alt="لوزان" className="h-11 w-auto object-contain sm:h-12" />
+              </a>
+
+              {/* Desktop Navigation */}
+              <nav className="hidden items-center gap-8 lg:flex">
+                {[
+                  { href: "#home", label: "الرئيسية" },
+                  { href: "#features", label: "الخدمات" },
+                  { href: "#about", label: "من نحن" },
+                  { href: "#reviews", label: "الآراء" },
+                ].map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    className="group relative py-2 text-sm font-medium transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                    <span className="absolute inset-x-0 bottom-0 h-0.5 origin-right scale-x-0 rounded-full bg-primary transition-transform duration-300 group-hover:scale-x-100" />
+                  </a>
+                ))}
+              </nav>
+            </div>
+
+            <div className="flex items-center gap-1.5">
+              <button
+                type="button"
+                aria-label={isDarkMode ? "تفعيل الوضع الفاتح" : "تفعيل الوضع الداكن"}
+                onClick={() => setIsDarkMode(!isDarkMode)}
+                className={`flex items-center gap-1.5 rounded-full border px-3 py-2 text-xs font-semibold transition-colors ${isDarkMode ? "border-white/15 bg-white/5 hover:bg-white/10" : "border-black/10 bg-black/[0.03] hover:bg-black/[0.06]"}`}
+              >
+                {isDarkMode ? <Sun size={17} /> : <Moon size={17} />}
+                <span className="hidden sm:inline">{isDarkMode ? "فاتح" : "داكن"}</span>
+              </button>
+              <button 
+                className="lg:hidden p-2"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              >
+                <Menu size={24} />
               </button>
             </div>
-
-            {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-8">
-              <a href="#home" className="text-sm hover:text-primary transition-colors">الرئيسية</a>
-              <a href="#features" className="text-sm hover:text-primary transition-colors">الخدمات</a>
-              <a href="#about" className="text-sm hover:text-primary transition-colors">من نحن</a>
-              <a href="#about" className="text-sm hover:text-primary transition-colors">الآراء</a>
-            </nav>
-
-            {/* Logo */}
-            <div className="flex items-center gap-2">
-              <div className="text-2xl font-bold">
-                <img src="https://i.ibb.co/KxchXXLs/Group-1.png" alt="لوزان" className="h-10 w-auto" />
-              </div>
-            </div>
-
-            {/* Mobile Menu Button */}
-            <button 
-              className="lg:hidden p-2"
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            >
-              <Menu size={24} />
-            </button>
           </div>
 
           {/* Mobile Menu */}
           {mobileMenuOpen && (
-            <div className="lg:hidden py-4 border-t border-white/10">
+            <div className="border-t border-border py-4 lg:hidden">
               <nav className="flex flex-col gap-4">
                 <a href="#home" className="text-sm hover:text-primary transition-colors">الرئيسية</a>
                 <a href="#features" className="text-sm hover:text-primary transition-colors">الخدمات</a>
                 <a href="#about" className="text-sm hover:text-primary transition-colors">من نحن</a>
-                <a href="#about" className="text-sm hover:text-primary transition-colors">الآراء</a>
-                <button className="bg-primary hover:bg-primary/90 text-white px-6 py-2 rounded-lg text-sm font-semibold transition-all">
-                  مناسب لجميع السيارات
-                </button>
+                <a href="#reviews" className="text-sm hover:text-primary transition-colors">الآراء</a>
               </nav>
             </div>
           )}
@@ -74,7 +105,7 @@ export default function App() {
       </header>
 
       {/* Hero Section */}
-      <section id="home" className="relative flex min-h-[790px] items-start justify-center overflow-hidden pb-[158px] pt-[108px] sm:min-h-screen sm:items-center sm:pb-0 sm:pt-20">
+      <section id="home" className="relative flex min-h-[790px] items-start justify-center overflow-hidden pb-[158px] pt-[108px] text-white sm:min-h-screen sm:items-center sm:pb-0 sm:pt-20">
         {/* Full Background Image */}
         <img
           src="https://i.postimg.cc/59Cyg04d/Chat-GPT-Image-May-25-2026-11-42-16-AM.png"
@@ -199,24 +230,35 @@ export default function App() {
       </section>
 
       {/* Eid Offer Gallery */}
-      <section className="bg-[#090909] pt-14 pb-7 sm:pt-20 sm:pb-10">
+      <section className={`pt-14 pb-7 transition-colors duration-300 sm:pt-20 sm:pb-10 ${isDarkMode ? "bg-[#090909]" : "bg-[#f7f7f7]"}`}>
         <div className="container mx-auto px-4">
           <div className="mb-9 text-center sm:mb-11">
-            <h2 className="text-3xl font-bold text-white sm:text-[2.55rem]">اختر العرض المناسب لك</h2>
-            <p className="mt-2 text-sm text-white/55 sm:text-base">عروض حصرية لفترة محدودة بمناسبة عيد الأضحى</p>
+            <h2 className="text-3xl font-bold sm:text-[2.55rem]">اختر العرض المناسب لك</h2>
+            <p className="mt-2 text-sm text-muted-foreground sm:text-base">عروض حصرية لفترة محدودة بمناسبة عيد الأضحى</p>
           </div>
 
-          <div dir="ltr" className="mx-auto grid max-w-[1160px] grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4">
+          <div dir="ltr" className="mx-auto grid max-w-[580px] grid-cols-2 gap-3 sm:gap-5">
             {offerImages.map((image, index) => (
               <div
                 key={image}
-                className="overflow-hidden rounded-xl border border-white/10 bg-[#070707] p-2 shadow-[0_14px_38px_rgba(0,0,0,0.34)] sm:p-3"
+                className={`overflow-hidden rounded-xl border p-2 shadow-[0_14px_38px_rgba(0,0,0,0.12)] transition-colors duration-300 sm:p-3 ${isDarkMode ? "border-white/10 bg-[#070707]" : "border-black/10 bg-white"}`}
               >
-                <img
-                  src={image}
-                  alt={`عرض لوزان ${index + 1}`}
-                  className="w-full rounded-lg object-cover"
-                />
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (window.matchMedia("(max-width: 639px)").matches) {
+                      setSelectedOfferImage(image);
+                    }
+                  }}
+                  aria-label={`عرض صورة لوزان ${index + 1} بحجم كامل`}
+                  className="block w-full cursor-zoom-in sm:cursor-default"
+                >
+                  <img
+                    src={image}
+                    alt={`عرض لوزان ${index + 1}`}
+                    className="w-full rounded-lg object-cover"
+                  />
+                </button>
                 <a
                   dir="rtl"
                   href="https://api.whatsapp.com/send/?phone=966535101960&text&type=phone_number&app_absent=0"
@@ -224,7 +266,7 @@ export default function App() {
                   rel="noopener noreferrer"
                   className="mt-2.5 flex min-h-10 w-full items-center justify-center gap-1.5 rounded-md border border-red-400/20 bg-[#dc2525] px-2 text-[11px] font-bold text-white shadow-[0_7px_18px_rgba(220,37,37,0.26)] transition-all hover:bg-[#ed3030] sm:mt-3 sm:min-h-[48px] sm:gap-2 sm:text-sm"
                 >
-                  <span>{index === 3 ? "استبدل تظليلك الآن" : "احجز عبر واتساب"}</span>
+                  <span>احجز عبر واتساب</span>
                   <WhatsAppIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
               </div>
@@ -232,6 +274,31 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {selectedOfferImage && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-label="معاينة العرض"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-3 sm:hidden"
+          onClick={() => setSelectedOfferImage(null)}
+        >
+          <button
+            type="button"
+            aria-label="إغلاق الصورة"
+            onClick={() => setSelectedOfferImage(null)}
+            className="absolute right-4 top-4 z-10 rounded-full bg-white/10 p-2 text-white backdrop-blur-sm"
+          >
+            <X size={26} />
+          </button>
+          <img
+            src={selectedOfferImage}
+            alt="العرض بالحجم الكامل"
+            className="max-h-full max-w-full object-contain"
+            onClick={(event) => event.stopPropagation()}
+          />
+        </div>
+      )}
 
     
 
@@ -249,7 +316,7 @@ export default function App() {
               {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
               {/* Card Content */}
-              <div className="absolute bottom-0 right-0 left-0 p-6 text-right">
+              <div className="absolute bottom-0 right-0 left-0 p-6 text-right text-white">
                 <div className="inline-block bg-primary text-white text-xs font-bold px-3 py-1 rounded-full mb-3">
                   الفرق واضح
                 </div>
@@ -346,7 +413,7 @@ export default function App() {
           animation-delay: 0.6s;
         }
       `}</style>
-      <section className="py-20 bg-gradient-to-b from-transparent via-black/40 to-black/60 relative overflow-hidden">
+      <section id="reviews" className={`relative scroll-mt-20 overflow-hidden py-20 transition-colors duration-300 ${isDarkMode ? "bg-gradient-to-b from-transparent via-black/40 to-black/60" : "bg-gradient-to-b from-white via-red-50/40 to-gray-100"}`}>
         {/* Cinematic background effect */}
         <div className="absolute inset-0 opacity-20">
           <div className="absolute top-0 left-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"></div>
@@ -361,14 +428,14 @@ export default function App() {
 
           <div className="flex flex-col gap-6 max-w-2xl mx-auto">
             {/* Review Card 1 */}
-            <div className="review-card bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-colors">
+            <div className={`review-card rounded-2xl border p-8 backdrop-blur-md transition-colors hover:border-primary/30 ${isDarkMode ? "border-white/10 bg-black/50" : "border-black/10 bg-white shadow-sm"}`}>
               <div className="flex justify-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={24} className="fill-primary text-primary" />
                 ))}
               </div>
-              <h3 className="font-bold text-center mb-4 text-xl text-white">Ziad Saud</h3>
-              <div className="review-comment bg-white text-black rounded-xl p-5 text-center">
+              <h3 className="font-bold text-center mb-4 text-xl">Ziad Saud</h3>
+              <div className={`review-comment rounded-xl p-5 text-center text-black ${isDarkMode ? "bg-white" : "bg-gray-50"}`}>
                 <p className="text-sm sm:text-base font-semibold leading-relaxed">
                   الفرق بين معك من أول وقفة في الشمس تريد كيف صار أسرع بمراحل.. تجربة تستحق 10/10
                 </p>
@@ -376,14 +443,14 @@ export default function App() {
             </div>
 
             {/* Review Card 2 */}
-            <div className="review-card bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-colors">
+            <div className={`review-card rounded-2xl border p-8 backdrop-blur-md transition-colors hover:border-primary/30 ${isDarkMode ? "border-white/10 bg-black/50" : "border-black/10 bg-white shadow-sm"}`}>
               <div className="flex justify-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={24} className="fill-primary text-primary" />
                 ))}
               </div>
-              <h3 className="font-bold text-center mb-4 text-xl text-white">إبراهيم بن خليف المطيري</h3>
-              <div className="review-comment bg-white text-black rounded-xl p-5 text-center">
+              <h3 className="font-bold text-center mb-4 text-xl">إبراهيم بن خليف المطيري</h3>
+              <div className={`review-comment rounded-xl p-5 text-center text-black ${isDarkMode ? "bg-white" : "bg-gray-50"}`}>
                 <p className="text-sm sm:text-base font-semibold leading-relaxed">
                   أفضل عازل حراري يحميك من الشمس
                 </p>
@@ -391,14 +458,14 @@ export default function App() {
             </div>
 
             {/* Review Card 3 */}
-            <div className="review-card bg-black/50 backdrop-blur-md border border-white/10 rounded-2xl p-8 hover:border-primary/30 transition-colors">
+            <div className={`review-card rounded-2xl border p-8 backdrop-blur-md transition-colors hover:border-primary/30 ${isDarkMode ? "border-white/10 bg-black/50" : "border-black/10 bg-white shadow-sm"}`}>
               <div className="flex justify-center gap-1 mb-4">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} size={24} className="fill-primary text-primary" />
                 ))}
               </div>
-              <h3 className="font-bold text-center mb-4 text-xl text-white">Sara Alqahtani</h3>
-              <div className="review-comment bg-white text-black rounded-xl p-5 text-center">
+              <h3 className="font-bold text-center mb-4 text-xl">Sara Alqahtani</h3>
+              <div className={`review-comment rounded-xl p-5 text-center text-black ${isDarkMode ? "bg-white" : "bg-gray-50"}`}>
                 <p className="text-sm sm:text-base font-semibold leading-relaxed">
                   العازل أثيق وشكله راقي على السيارة كأنه وكالة
                 </p>
@@ -438,7 +505,7 @@ export default function App() {
                 </div>
               </div>
               {/* Card Content */}
-              <div className="absolute bottom-0 right-0 left-0 p-6 text-right">
+              <div className="absolute bottom-0 right-0 left-0 p-6 text-right text-white">
                 <h3 className="text-2xl font-bold mb-2">لوزان — الاختيار الأول للحماية</h3>
                 <p className="text-white/70 text-sm leading-relaxed mb-4">
                   نؤمن أن حماية سيارتك لازم تكون احترافية، موثوقة، وبأعلى معايير الجودة
@@ -497,9 +564,9 @@ export default function App() {
 
 
   {/* Offer Booking Banner */}
-      <section className="bg-[#090909] px-4 pb-14 pt-7 sm:pb-20 sm:pt-10">
-        <div className="relative mx-auto max-w-[1160px] overflow-hidden rounded-xl border border-white/15 bg-[#141414] px-5 py-6 sm:px-8 lg:px-10">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_50%,rgba(255,255,255,0.06),transparent_36%),linear-gradient(105deg,rgba(0,0,0,0.25),transparent_55%)]" />
+      <section className={`px-4 pb-14 pt-7 transition-colors duration-300 sm:pb-20 sm:pt-10 ${isDarkMode ? "bg-[#090909]" : "bg-[#f7f7f7]"}`}>
+        <div className={`relative mx-auto max-w-[1160px] overflow-hidden rounded-xl border px-5 py-6 transition-colors duration-300 sm:px-8 lg:px-10 ${isDarkMode ? "border-white/15 bg-[#141414]" : "border-black/10 bg-white shadow-sm"}`}>
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_50%,rgba(220,38,38,0.06),transparent_36%),linear-gradient(105deg,rgba(0,0,0,0.03),transparent_55%)]" />
           <div dir="ltr" className="relative flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
             <div className="flex shrink-0 items-center justify-center rounded-full border-2 border-primary/85 p-2">
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-[0_0_22px_rgba(220,38,38,0.42)] sm:h-[74px] sm:w-[74px]">
@@ -508,8 +575,8 @@ export default function App() {
             </div>
 
             <div dir="rtl" className="text-center lg:text-right">
-              <h2 className="text-2xl font-bold text-white sm:text-3xl">لا تفوت عروض العيد</h2>
-              <p className="mt-1 text-base font-medium text-white/65 sm:text-lg">احجز الآن واستمتع بأعلى حماية<br className="hidden sm:block" /> لسيارتك بأفضل الأسعار</p>
+              <h2 className="text-2xl font-bold sm:text-3xl">لا تفوت عروض العيد</h2>
+              <p className="mt-1 text-base font-medium text-muted-foreground sm:text-lg">احجز الآن واستمتع بأعلى حماية<br className="hidden sm:block" /> لسيارتك بأفضل الأسعار</p>
             </div>
 
             <div dir="ltr" className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
@@ -528,7 +595,7 @@ export default function App() {
                 target="_blank"
                 rel="noopener noreferrer"
                 dir="rtl"
-                className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg border border-yellow-500/70 bg-black/15 px-7 text-lg font-bold text-white transition-colors hover:bg-yellow-500/10"
+                className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg border border-yellow-500/70 bg-transparent px-7 text-lg font-bold transition-colors hover:bg-yellow-500/10"
               >
                 <ShoppingBag className="h-6 w-6 text-yellow-500" />
                 <span>اشتري من المتجر</span>
@@ -538,7 +605,7 @@ export default function App() {
         </div>
       </section>
       {/* Footer */}
-      <footer className="bg-black border-t border-white/10 py-12">
+      <footer className={`border-t py-12 transition-colors duration-300 ${isDarkMode ? "border-white/10 bg-black" : "border-black/10 bg-white"}`}>
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
             {/* Company Info */}
@@ -608,7 +675,7 @@ export default function App() {
           </div>
 
           {/* Copyright */}
-          <div className="border-t border-white/10 pt-8 text-center text-sm text-muted-foreground">
+          <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
             <p>جميع الحقوق محفوظة © 2025 لوزان</p>
           </div>
         </div>
@@ -628,7 +695,7 @@ function WhatsAppIcon({ className = "h-6 w-6" }: { className?: string }) {
 
 function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <div className="flex items-center gap-3 bg-secondary/30 border border-white/10 rounded-lg p-3">
+    <div className="flex items-center gap-3 bg-secondary/30 border border-border rounded-lg p-3">
       <div className="text-primary shrink-0">{icon}</div>
       <span className="text-sm">{text}</span>
     </div>
@@ -637,7 +704,7 @@ function FeatureItem({ icon, text }: { icon: React.ReactNode; text: string }) {
 
 function FeatureItemAlt({ text }: { text: string }) {
   return (
-    <div className="bg-secondary/20 border border-white/10 rounded-lg p-3 text-center">
+    <div className="bg-secondary/20 border border-border rounded-lg p-3 text-center">
       <span className="text-sm text-muted-foreground">{text}</span>
     </div>
   );
