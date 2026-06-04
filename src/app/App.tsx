@@ -1,22 +1,59 @@
 import { Star, Menu, Search, User, MapPin, Phone, Mail, Instagram, Youtube, Linkedin, Clock, Shield, CheckCircle2, Calendar, Settings, Eye, FileText, DollarSign, Award, Zap, ChevronLeft, Sun, Moon, ShoppingBag, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import logoImage from "../../assets/logo.png";
-import darkLogoImage from "../../assets/logo2.png";
-import featuredOfferImage from "../../assets/عرض1.png";
-import cityOfferImage from "../../assets/1779696989779.png";
+const logoImage = new URL("../../assets/logo.png", import.meta.url).href;
+const darkLogoImage = new URL("../../assets/logo2.png", import.meta.url).href;
+const bannerHorizontalImage = new URL("../../assets/بانر-افقي-لوزان.png", import.meta.url).href;
+const carProtectionImage = new URL("../../assets/خنقة-سياره.png", import.meta.url).href;
+const yourCarDeservesImage = new URL("../../assets/سيارتك-تستاهل.png", import.meta.url).href;
+const oldInsulatorImage = new URL("../../assets/عازلك-القديم.png", import.meta.url).href;
+const beforeAugustImage = new URL("../../assets/قبل-اغسطس.png", import.meta.url).href;
+const everyWeekImage = new URL("../../assets/كل-اسبوع.png", import.meta.url).href;
 
 const whatsappBookingUrl = `https://api.whatsapp.com/send/?phone=966535101960&text=${encodeURIComponent("السلام عليكم، أرغب بحجز عرض تظليلة النانو سيراميك بـ 270 ريال.")}&type=phone_number&app_absent=0`;
+const whatsappBookingUrl500 = `https://api.whatsapp.com/send/?phone=966535101960&text=${encodeURIComponent("السلام عليكم، أرغب بحجز عرض حماية السيارات بـ 500 ريال.")}&type=phone_number&app_absent=0`;
+
+const offerPackages = [
+  {
+    price: "270 ريال",
+    title: "عرض التظليلة الأساسية",
+    description: "حل سريع ومميز للحماية اليومية مع نتيجة احترافية وسريعة.",
+    points: ["تظليلة نانو سيراميك", "حماية من الحرارة والأشعة", "ضمان جودة على التركيب"],
+    accent: "primary",
+  },
+  {
+    price: "500 ريال",
+    title: "عرض الحماية الشاملة",
+    description: "خدمة متكاملة تجمع بين الحماية القوية والمظهر الراقي للسيارة.",
+    points: ["حماية أعمق + عزل متقدم", "تنظيف ومتابعة مهنية", "أفضل قيمة لحفظ السيارة"],
+    accent: "yellow",
+  },
+];
 
 const offerImages = [
   {
-    src: featuredOfferImage,
-    title: "عرض العيد الخاص",
-    description: "حماية احترافية وضمان حتى 10 سنوات",
+    src: carProtectionImage,
+    title: "تظليلة نانو سيراميك 270 ريال",
+    description: "حماية شاملة للسيارة مع ضمان طويل الأمد ونتيجة احترافية.",
   },
   {
-    src: cityOfferImage,
-    title: "سيارتك جاهزة قبل العيد",
-    description: "تظليلة نانو سيراميك بـ 270 ريال",
+    src: yourCarDeservesImage,
+    title: "حماية السيارة بأعلى جودة",
+    description: "خدمة احترافية تحافظ على مظهر سيارتك وتزيد من قيمتها.",
+  },
+  {
+    src: oldInsulatorImage,
+    title: "إعادة تأهيل العازل القديم",
+    description: "حل عملي يعيد للسيارة مظهرها ويحسن مستوى الحماية.",
+  },
+  {
+    src: beforeAugustImage,
+    title: "عرض محدود قبل أغسطس",
+    description: "استفد من الفرصة قبل انتهاء التوفير أو تغيير الأسعار.",
+  },
+  {
+    src: everyWeekImage,
+    title: "عروض لوزان المتجددة",
+    description: "تحديثات عروض دورية مع دعم فني ومتابعة مميزة.",
   },
 ];
 
@@ -171,13 +208,25 @@ export default function App() {
 
               {/* Bottom Section */}
               <div className="mb-0 flex flex-col items-center gap-3 sm:mb-28 sm:items-start">
-                {/* Buttons - First */}
-                <a href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-[48px] w-[220px] items-center justify-center gap-2 rounded-lg border border-yellow-500 bg-primary px-5 text-sm font-bold text-white shadow-[0_8px_22px_rgba(220,38,38,0.35)] transition-all hover:scale-105 hover:border-yellow-400 hover:bg-primary/90 sm:min-h-[58px] sm:w-auto sm:px-9 sm:text-lg">
-                  <WhatsAppIcon className="h-5 w-5 sm:h-6 sm:w-6" />
-                  <span>احجز عرض 270 ريال</span>
-                </a>
+                <div className="w-full max-w-md rounded-2xl border border-white/15 bg-black/35 p-3 text-right shadow-[0_18px_40px_rgba(0,0,0,0.25)] backdrop-blur-md sm:max-w-lg">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-yellow-400">العروض المتاحة</p>
+                  <div className="mt-2 flex flex-wrap items-center gap-2 text-sm text-white/90">
+                    <span className="rounded-full border border-yellow-400/30 bg-yellow-400/10 px-3 py-1">270 ريال · تظليلة نانو سيراميك</span>
+                    <span className="rounded-full border border-red-400/30 bg-red-400/10 px-3 py-1">500 ريال · حماية شاملة + عزل احترافي</span>
+                  </div>
+                </div>
 
-                {/* Button - Second */}
+                <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center">
+                  <a href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-[48px] w-[220px] items-center justify-center gap-2 rounded-lg border border-yellow-500 bg-primary px-5 text-sm font-bold text-white shadow-[0_8px_22px_rgba(220,38,38,0.35)] transition-all hover:scale-105 hover:border-yellow-400 hover:bg-primary/90 sm:min-h-[58px] sm:w-auto sm:px-9 sm:text-lg">
+                    <WhatsAppIcon className="h-5 w-5 sm:h-6 sm:w-6" />
+                    <span>احجز عرض 270 ريال</span>
+                  </a>
+                  <a href={whatsappBookingUrl500} target="_blank" rel="noopener noreferrer" className={`flex min-h-[48px] w-[220px] items-center justify-center gap-2 rounded-lg border px-5 text-sm font-bold text-white shadow-[0_8px_22px_rgba(255,255,255,0.08)] transition-all hover:scale-105 sm:min-h-[58px] sm:w-auto sm:px-9 sm:text-lg ${isDarkMode ? "border-white/20 bg-white/10 hover:bg-white/15" : "border-black/10 bg-black/85 hover:bg-black/95"}`}>
+                    <Shield className="h-5 w-5 text-yellow-400 sm:h-6 sm:w-6" />
+                    <span>احجز عرض 500 ريال</span>
+                  </a>
+                </div>
+
                 <a href="https://salla.sa/lozan-sa/" target="_blank" rel="noopener noreferrer" className="text-xs font-medium text-white/80 underline decoration-white/30 underline-offset-4 transition-colors hover:text-yellow-400 sm:text-sm">
                   <span>اشتري من المتجر</span>
                 </a>
@@ -221,10 +270,10 @@ export default function App() {
         <div className="container mx-auto px-4">
           <div className="mb-9 text-center sm:mb-11">
             <h2 className="text-3xl font-bold sm:text-[2.55rem]">اختر العرض المناسب لك</h2>
-            <p className="mt-2 text-sm text-muted-foreground sm:text-base">عروض حصرية لفترة محدودة بمناسبة عيد الأضحى</p>
+            <p className="mt-2 text-sm text-muted-foreground sm:text-base">عروض حصرية لفترة محدودة </p>
           </div>
 
-          <div dir="ltr" className="mx-auto grid max-w-[580px] grid-cols-2 gap-3 sm:gap-5">
+          <div dir="ltr" className="mx-auto grid max-w-7xl grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 sm:gap-5">
             {offerImages.map((offer, index) => (
               <div
                 key={offer.src}
@@ -245,7 +294,7 @@ export default function App() {
                     alt={offer.title}
                     loading="lazy"
                     decoding="async"
-                    className="w-full rounded-lg object-cover"
+                    className="w-full rounded-lg object-contain object-center bg-black/5 sm:aspect-[4/5]"
                   />
                 </button>
                 <div dir="rtl" className="px-1 pb-1 pt-2.5 text-right sm:pt-3">
@@ -267,6 +316,41 @@ export default function App() {
                   <WhatsAppIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                 </a>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className={`px-4 pb-8 pt-2 transition-colors duration-300 sm:pb-12 ${isDarkMode ? "bg-[#090909]" : "bg-[#f7f7f7]"}`}>
+        <div className="container mx-auto max-w-6xl">
+          <div className="mb-6 text-center sm:mb-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-yellow-500">الفرق بين العرضين</p>
+            <h3 className="mt-2 text-2xl font-bold sm:text-3xl">اختر العرض الذي يناسب سيارتك وأهدافك</h3>
+            <p className="mt-2 text-sm text-muted-foreground sm:text-base">شرح واضح ومباشر لكل عرض مع مميزات كل خدمة لتساعد العميل على اتخاذ القرار بسرعة.</p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {offerPackages.map((item) => (
+              <article key={item.title} className={`rounded-2xl border p-5 shadow-[0_18px_40px_rgba(0,0,0,0.14)] ${isDarkMode ? "border-white/10 bg-black/70" : "border-black/10 bg-white"}`}>
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-[11px] uppercase tracking-[0.3em] text-yellow-500">عرض</p>
+                    <h4 className="mt-1 text-xl font-bold">{item.title}</h4>
+                  </div>
+                  <span className={`rounded-full px-3 py-1 text-sm font-bold ${item.accent === "yellow" ? "bg-yellow-400/10 text-yellow-400" : "bg-primary/10 text-primary"}`}>{item.price}</span>
+                </div>
+                <p className="mt-3 text-sm text-muted-foreground">{item.description}</p>
+                <ul className="mt-4 space-y-2 text-right text-sm text-foreground/90">
+                  {item.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2 justify-end">
+                      <CheckCircle2 size={16} className="mt-0.5 text-primary" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+                <a href={item.price === "270 ريال" ? whatsappBookingUrl : whatsappBookingUrl500} target="_blank" rel="noopener noreferrer" className={`mt-5 inline-flex min-h-[46px] items-center justify-center rounded-lg px-4 text-sm font-bold text-white transition-colors ${item.accent === "yellow" ? "bg-yellow-500 hover:bg-yellow-400" : "bg-primary hover:bg-red-500"}`}>
+                  احجز الآن
+                </a>
+              </article>
             ))}
           </div>
         </div>
@@ -562,41 +646,34 @@ export default function App() {
 
   {/* Offer Booking Banner */}
       <section className={`px-4 pb-14 pt-7 transition-colors duration-300 sm:pb-20 sm:pt-10 ${isDarkMode ? "bg-[#090909]" : "bg-[#f7f7f7]"}`}>
-        <div className={`relative mx-auto max-w-[1160px] overflow-hidden rounded-xl border px-5 py-6 transition-colors duration-300 sm:px-8 lg:px-10 ${isDarkMode ? "border-white/15 bg-[#141414]" : "border-black/10 bg-white shadow-sm"}`}>
+        <div className={`relative mx-auto max-w-[1180px] overflow-hidden rounded-2xl border px-5 py-6 transition-colors duration-300 sm:px-8 lg:px-10 ${isDarkMode ? "border-white/15 bg-[#141414]" : "border-black/10 bg-white shadow-sm"}`}>
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_100%_50%,rgba(220,38,38,0.06),transparent_36%),linear-gradient(105deg,rgba(0,0,0,0.03),transparent_55%)]" />
-          <div dir="ltr" className="relative flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
-            <div className="flex shrink-0 items-center justify-center rounded-full border-2 border-primary/85 p-2">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary shadow-[0_0_22px_rgba(220,38,38,0.42)] sm:h-[74px] sm:w-[74px]">
-                <Mail className="h-8 w-8 text-white sm:h-9 sm:w-9" />
+          <div className="relative grid items-center gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="overflow-hidden rounded-2xl border border-white/10 bg-black/20 shadow-[0_12px_30px_rgba(0,0,0,0.25)]">
+              <img src={bannerHorizontalImage} alt="عرض لوزان وخصومات الحماية" className="h-56 w-full object-cover object-center sm:h-64" />
+            </div>
+
+            <div dir="rtl" className="text-right">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-yellow-500">العروض المميزة</p>
+              <h2 className="mt-2 text-2xl font-bold sm:text-3xl">عرض 270 ريال + عرض 500 ريال</h2>
+              <p className="mt-3 text-base text-muted-foreground sm:text-lg">اختر العرض المناسب لك: حماية نانو سيراميك احترافية أو حزمة شاملة مع عزل وتغطية متكاملة، مع تقديم واضح ومتكامل في نفس المكان.</p>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <a href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-primary/30 bg-primary/10 p-4 text-right transition-colors hover:bg-primary/15">
+                  <div className="text-sm font-bold text-primary">عرض 270 ريال</div>
+                  <p className="mt-1 text-sm text-muted-foreground">تظليلة نانو سيراميك احترافية مع ضمان قوي.</p>
+                </a>
+                <a href={whatsappBookingUrl500} target="_blank" rel="noopener noreferrer" className="rounded-xl border border-yellow-400/30 bg-yellow-400/10 p-4 text-right transition-colors hover:bg-yellow-400/15">
+                  <div className="text-sm font-bold text-yellow-400">عرض 500 ريال</div>
+                  <p className="mt-1 text-sm text-muted-foreground">حزمة حماية شاملة مع عزل وتغطية متقدمة.</p>
+                </a>
               </div>
-            </div>
 
-            <div dir="rtl" className="text-center lg:text-right">
-              <h2 className="text-2xl font-bold sm:text-3xl">لا تفوت عروض العيد</h2>
-              <p className="mt-1 text-base font-medium text-muted-foreground sm:text-lg">احجز الآن واستمتع بأعلى حماية<br className="hidden sm:block" /> لسيارتك بأفضل الأسعار</p>
-            </div>
-
-            <div dir="ltr" className="flex w-full flex-col gap-4 sm:w-auto sm:flex-row">
-              <a
-                href={whatsappBookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                dir="rtl"
-                className="flex min-h-[62px] min-w-[235px] items-center justify-center gap-3 rounded-lg bg-primary px-7 text-lg font-bold text-white transition-colors hover:bg-red-500"
-              >
-                <WhatsAppIcon />
-                <span>احجز عرض 270 ريال</span>
-              </a>
-              <a
-                href="https://salla.sa/lozan-sa/"
-                target="_blank"
-                rel="noopener noreferrer"
-                dir="rtl"
-                className="flex min-h-[44px] items-center justify-center gap-2 px-4 text-sm font-medium text-muted-foreground transition-colors hover:text-yellow-500"
-              >
-                <ShoppingBag className="h-6 w-6 text-yellow-500" />
-                <span>اشتري من المتجر</span>
-              </a>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <a href={whatsappBookingUrl} target="_blank" rel="noopener noreferrer" className="flex min-h-[50px] items-center justify-center gap-2 rounded-lg bg-primary px-5 text-sm font-bold text-white transition-colors hover:bg-red-500">احجز عرض 270 ريال</a>
+                <a href={whatsappBookingUrl500} target="_blank" rel="noopener noreferrer" className={`flex min-h-[50px] items-center justify-center gap-2 rounded-lg border px-5 text-sm font-bold text-white transition-colors ${isDarkMode ? "border-white/10 bg-white/5 hover:bg-white/10" : "border-black/10 bg-black/90 hover:bg-black/95"}`}>احجز عرض 500 ريال</a>
+                <a href="https://salla.sa/lozan-sa/" target="_blank" rel="noopener noreferrer" className="flex min-h-[44px] items-center justify-center gap-2 px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-yellow-500">اشتري من المتجر</a>
+              </div>
             </div>
           </div>
         </div>
